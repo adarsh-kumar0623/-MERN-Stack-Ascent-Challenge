@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grade Calculator</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #dbe9f4 0%, #f5f9fc 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+    }
+    .calculator-container {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12), 0 6px 6px rgba(0,0,0,0.08) inset;
+      width: 360px;
+      color: #222;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .calculator-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.2), 0 8px 8px rgba(0,0,0,0.1) inset;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 700;
+      color: #1e3c72;
+      letter-spacing: 1px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+      color: #555;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1.5px solid #ccc;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="number"]:focus {
+      border-color: #1e3c72;
+      outline: none;
+      box-shadow: 0 0 8px rgba(30, 60, 114, 0.4);
+    }
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #1e3c72;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(30, 60, 114, 0.6);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    button:hover {
+      background-color: #16375b;
+      box-shadow: 0 6px 16px rgba(22, 55, 91, 0.8);
+    }
+    .result-box {
+      margin-top: 25px;
+      background-color: #e9f0fb;
+      color: #01282f;
+      padding: 20px;
+      border-left: 6px solid #1e3c72;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(30, 60, 114, 0.15);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator-container">
+    <h2>Grade Calculator</h2>
+    <form id="gradeForm">
+      <label for="math">Math:</label>
+      <input type="number" id="math" name="math" min="0" max="100" required />
+
+      <label for="science">Science:</label>
+      <input type="number" id="science" name="science" min="0" max="100" required />
+
+      <label for="english">English:</label>
+      <input type="number" id="english" name="english" min="0" max="100" required />
+
+      <label for="computer">Computer:</label>
+      <input type="number" id="computer" name="computer" min="0" max="100" required />
+
+      <label for="history">History:</label>
+      <input type="number" id="history" name="history" min="0" max="100" required />
+
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="result" class="result-box" style="display:none;"></div>
+  </div>
+
+  <script>
+    // Function to calculate grade
+    function calculateGrade(score) {
+      if (score >= 90) {
+        return "A+";
+      } else if (score >= 80) {
+        return "A";
+      } else if (score >= 70) {
+        return "A";
+      } else if (score >= 60) {
+        return "B";
+      } else if (score >= 50) {
+        return "C"; 
+      } else if (score >= 40) {
+        return "D";
+      } else {
+        return "F";
+      }
+    }
+
+    document.getElementById('gradeForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const math = Number(document.getElementById('math').value);
+      const science = Number(document.getElementById('science').value);
+      const english = Number(document.getElementById('english').value);
+      const computer = Number(document.getElementById('computer').value);
+      const history = Number(document.getElementById('history').value);
+
+      const totalMarks = math + science + english + computer + history;
+      const maxMarks = 500;
+      const percentage = (totalMarks / maxMarks) * 100;
+      const grade = calculateGrade(percentage);
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `
+        Total Marks: ${totalMarks} / ${maxMarks} <br />
+        Percentage: ${percentage.toFixed(2)}% <br />
+        Grade: ${grade}
+      `;
+    });
+  </script>
+</body>
+</html>
