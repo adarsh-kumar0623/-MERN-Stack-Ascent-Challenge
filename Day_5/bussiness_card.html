@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adarsh Bhardwaj - Business Card</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      transition: background-color 0.4s, color 0.4s;
+    }
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 360px;
+      text-align: center;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #0073e6;
+    }
+
+    h1 {
+      margin: 10px 0 5px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 16px;
+      color: #666;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    h3 {
+      margin-top: 20px;
+      font-size: 15px;
+      color: #444;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+
+    ul li {
+      display: inline-block;
+      margin: 0 8px;
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: #0073e6;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    ul li a:hover {
+      color: #005bb5;
+    }
+
+    #toggle-btn {
+      margin-top: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #0073e6;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #toggle-btn:hover {
+      background-color: #005bb5;
+    }
+
+    /* Dark Mode Styles */
+    .dark-mode {
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+
+    .dark-mode .card {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+      box-shadow: 0 6px 16px rgba(255,255,255,0.05);
+    }
+
+    .dark-mode ul li a {
+      color: #90caf9;
+    }
+
+    .dark-mode ul li a:hover {
+      color: #64b5f6;
+    }
+
+    .dark-mode #toggle-btn {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .dark-mode #toggle-btn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="Profile_pic.jpg" alt="Profile Picture" class="profile-pic" />
+    <h1>Adarsh Bhardwaj</h1>
+    <h2>Frontend Developer</h2>
+    <p>
+      I’m Adarsh Bhardwaj, a B.Tech CSE student at Uttranchal University, Dehradun.  
+      Passionate about frontend development and cybersecurity, always eager to learn new things.
+    </p>
+    <h3>Connect with me:</h3>
+    <ul>
+      <li><a href="https://www.instagram.com/adarshbhardwaj__06" target="_blank">Instagram</a></li>
+      <li><a href="https://www.linkedin.com/in/adarsh-kumar-a6026a297" target="_blank">LinkedIn</a></li>
+      <li><a href="https://github.com/adarsh-kumar0623" target="_blank">GitHub</a></li>
+    </ul>
+    <button id="toggle-btn">Toggle Dark Mode</button>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggle-btn');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+</body>
+</html>
