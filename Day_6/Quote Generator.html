@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Quote Generator</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, rgba(5, 4, 4, 0.7), rgba(91, 98, 232, 0.7)), 
+                  url('image2.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: 'Trebuchet MS', sans-serif;
+      transition: all 0.6s ease;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quote-box {
+      color: aliceblue;
+      padding: 40px 35px;
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(83, 81, 214, 0.5);
+      border-radius: 18px;
+      text-align: center;
+      max-width: 650px;
+      width: 90%;
+      opacity: 0.95;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .quote-box h1 {
+      font-size: 1.8rem;
+      color: #ffda79;
+      margin-bottom: 12px;
+    }
+
+    .quote-box h4 {
+      margin-top: 8px;
+      opacity: 0.8;
+      font-weight: 400;
+      color: #eee;
+    }
+
+    #quote-call {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      min-height: 80px;
+      line-height: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+      transform: translateY(15px);
+    }
+
+    #quote-call.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #quote-gen {
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #31c6da, #007bff);
+      color: white;
+      cursor: pointer;
+      transition: 0.4s ease;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    #quote-gen:hover {
+      transform: scale(1.08);
+      background: white;
+      color: #007bff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="quote-box">
+      <h1>✨ Daily Quotes ✨</h1>
+      <h4>Click the button and ignite your spark 🔥</h4>
+      <div id="quote-call"></div>
+      <button id="quote-gen" onclick="quote_api()">Generate Quote</button>
+    </div>
+  </div>
+
+  <script>
+    let QuoteCall = document.querySelector("#quote-call");
+
+    async function quote_api() {
+      try {
+        QuoteCall.classList.remove("show");
+        QuoteCall.innerHTML = "Loading...";
+        
+        const res = await fetch("https://dummyjson.com/quotes/random");
+        const data = await res.json();
+
+        setTimeout(() => {
+          QuoteCall.innerHTML = `"${data.quote}" <br> – ${data.author}`;
+          QuoteCall.classList.add("show");
+        }, 300);
+      } catch (error) {
+        console.error("Failed to fetch", error);
+        QuoteCall.innerHTML = "⚠️ Failed to fetch quote.";
+        QuoteCall.classList.add("show");
+      }
+    }
+  </script>
+</body>
+</html>
